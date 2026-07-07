@@ -1,27 +1,11 @@
-<?php
-
-/**
- * ============================================================
- * Home
- * Projeto: Macramê Nós de Lu
- * ============================================================
- *
- * Página inicial da plataforma.
- * ============================================================
- */
-?>
-
-<section class="home">
-
+<section class="pagina pagina-home">
     <h1>Macramê Nós de Lu</h1>
 
     <p>
-        Bem-vindo à plataforma Macramê Nós de Lu.
+        Bem-vindo ao nosso espaço dedicado à arte, ao cuidado e à beleza dos trabalhos em macramê.
     </p>
 
     <p>
-        Esta página foi montada usando:
-        header, template, view e footer.
+        Cada peça é feita com carinho, valorizando o artesanal, o delicado e o único.
     </p>
-
 </section>
