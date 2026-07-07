@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# Quando acessar a raiz do domínio
+RewriteRule ^$ public/index.php [L]
+
+# Arquivos reais dentro de /public
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
+RewriteRule ^(.+)$ public/$1 [L]
+
+# Todas as demais rotas vão para o front controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ public/index.php [L]
+
+# Bloqueia acesso direto a pastas internas
+RedirectMatch 403 ^/(app|vendor|database|storage|tests)(/|$)
+
+# Bloqueia arquivos sensíveis
+RedirectMatch 403 ^/(bootstrap\.php|\.env)$
