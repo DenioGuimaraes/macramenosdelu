@@ -1,0 +1,12 @@
+Paleta
+
+Continuando nos tons pastéis.
+
+Elemento	Cor
+Fundo	#F7F3EE
+Título	#6B4E3D
+Subtítulo	#A67C5B
+Menu	#5B4636
+Hover	#B8865B
+
+Esses tons harmonizam muito bem com as cores da logo e remetem à fibra natural das cordas de macramê.

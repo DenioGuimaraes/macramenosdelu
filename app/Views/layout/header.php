@@ -17,30 +17,34 @@
 <body>
     <header class="site-header">
         <div class="header-container">
+
             <div class="site-logo">
-                <a href="index.php"> Macramê Nós de Lu </a>
+                <a href="index.php" aria-label="Ir para a página inicial">
+                    <img src="images/nodelu_logo.png" alt="Macramê Nós de Lu">
+                </a>
             </div>
+
+            <div class="site-branding">
+                <h1>Arte em Macramê</h1>
+                <div class="branding-divider"></div>
+                <p>Cada nó, uma história!</p>
+            </div>
+
             <button class="menu-toggle"
                 type="button"
                 aria-label="Abrir menu"
                 aria-expanded="false">
                 ☰
             </button>
+
             <nav class="main-menu">
                 <ul>
-                    <li>
-                        <a href="index.php">Home</a>
-                    </li>
-                    <li>
-                        <a href="index.php?url=catalogo">Catálogo</a>
-                    </li>
-                    <li>
-                        <a href="index.php?url=sobre">Sobre</a>
-                    </li>
-                    <li>
-                        <a href="index.php?url=contato">Contato</a>
-                    </li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="index.php?url=catalogo">Catálogo</a></li>
+                    <li><a href="index.php?url=sobre">Sobre</a></li>
+                    <li><a href="index.php?url=contato">Contato</a></li>
                 </ul>
             </nav>
+
         </div>
     </header>
