@@ -1,0 +1,70 @@
+/**
+ * Design System — Macramê Nós de Lu v2
+ * Tokens oficiais (fonte de verdade visual)
+ */
+
+:root {
+    /* Cores */
+    --color-primary: #935625;
+    --color-primary-hover: #7A431C;
+    --color-primary-active: #633516;
+
+    --color-bg-page: #FFFFFF;
+    --color-bg-soft: #FAF0E5;
+    --color-bg-header: #F5E3CF;
+    --color-bg-footer: #F5E3CF;
+    --color-bg-decorative: #E3C5A4;
+
+    --color-text: #2D241E;
+    --color-text-primary: #935625;
+    --color-text-on-primary: #FFFFFF;
+
+    --color-green: #1A8921;
+    --color-green-hover: #146F1A;
+    --color-focus: #2E5031;
+
+    --color-gold: #C9A058;
+    --color-error: #D4183D;
+    --color-border: #E3C5A4;
+
+    /* Diferenciais (referência visual aprovada) */
+    --color-benefit-brown: #855E42;
+    --color-benefit-green: #3B7A4E;
+
+    /* Fontes */
+    --font-brand: "Leckerli One", cursive;
+    --font-serif: "Cormorant Garamond", serif;
+    --font-sans: "Inter", sans-serif;
+
+    /* Espaçamento */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 40px;
+    --space-8: 48px;
+    --space-9: 64px;
+
+    /* Layout */
+    --container-max: 1440px;
+    --site-header-height: 7rem;
+    --header-ticker-height: 2.25rem;
+    --header-bar-height: 4.75rem;
+    --site-header-offset: calc(var(--header-ticker-height) + var(--header-bar-height));
+
+    /* Breakpoints (referência) */
+    --bp-sm: 640px;
+    --bp-md: 768px;
+    --bp-lg: 1024px;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+
+    /* Sombras */
+    --shadow-header: 0 2px 12px rgba(147, 86, 37, 0.08);
+}
