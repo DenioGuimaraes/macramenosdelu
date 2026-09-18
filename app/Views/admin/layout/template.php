@@ -22,12 +22,12 @@ $pageSubtitle = $pageSubtitle ?? '';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Leckerli+One&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="stylesheet" href="css/admin.css">
-    <script src="js/admin.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="<?= url() ?>favicon/favicon.svg">
+    <link rel="stylesheet" href="<?= url() ?>css/admin.css">
+    <script src="<?= url() ?>js/admin.js" defer></script>
 </head>
 
-<body class="admin">
+<body class="admin" data-base-url="<?= e(BASE_URL) ?>">
     <div class="admin-shell">
 
         <?php require VIEW_PATH . '/admin/layout/sidebar.php'; ?>

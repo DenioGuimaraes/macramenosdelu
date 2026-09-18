@@ -17,13 +17,13 @@ $pageTitle = $title ?? 'Macramê Nós de Lu';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Leckerli+One&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/menu.js" defer></script>
+    <link rel="icon" type="image/png" href="<?= url('favicon/favicon-96x96.png') ?>" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="<?= url('favicon/favicon.svg') ?>">
+    <link rel="shortcut icon" href="<?= url('favicon/favicon.ico') ?>">
+    <link rel="apple-touch-icon" href="<?= url('favicon/apple-touch-icon.png') ?>">
+    <link rel="manifest" href="<?= url('favicon/site.webmanifest') ?>">
+    <link rel="stylesheet" href="<?= url('css/style.css') ?>">
+    <script src="<?= url('js/menu.js') ?>" defer></script>
 </head>
 
 <body>
@@ -42,8 +42,8 @@ $pageTitle = $title ?? 'Macramê Nós de Lu';
         <div class="header-bar">
             <div class="container header-bar__inner">
                 <div class="site-logo">
-                    <a href="index.php" aria-label="Ir para a página inicial">
-                        <img src="images/nodelu_logo.png" alt="Macramê Nós de Lu">
+                    <a href="<?= url() ?>" aria-label="Ir para a página inicial">
+                        <img src="<?= url('images/nodelu_logo.png') ?>" alt="Macramê Nós de Lu">
                     </a>
                 </div>
 
@@ -53,7 +53,7 @@ $pageTitle = $title ?? 'Macramê Nós de Lu';
                             $isActive = $currentSlug === $item['slug'];
                             ?>
                             <li>
-                                <a href="<?= htmlspecialchars($item['href'], ENT_QUOTES, 'UTF-8') ?>"<?= $isActive ? ' class="is-active"' : '' ?>><?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?></a>
+                                <a href="<?= url($item['route']) ?>"<?= $isActive ? ' class="is-active"' : '' ?>><?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -78,7 +78,7 @@ $pageTitle = $title ?? 'Macramê Nós de Lu';
                     $isActive = $currentSlug === $item['slug'];
                     ?>
                     <li>
-                        <a href="<?= htmlspecialchars($item['href'], ENT_QUOTES, 'UTF-8') ?>"<?= $isActive ? ' class="is-active"' : '' ?>><?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?></a>
+                        <a href="<?= url($item['route']) ?>"<?= $isActive ? ' class="is-active"' : '' ?>><?= htmlspecialchars($item['label'], ENT_QUOTES, 'UTF-8') ?></a>
                     </li>
                 <?php endforeach; ?>
             </ul>

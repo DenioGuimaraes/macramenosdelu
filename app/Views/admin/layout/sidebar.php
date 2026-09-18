@@ -42,7 +42,7 @@ $menuGroups = [
                     <li>
                         <a
                             class="admin-nav__link<?= $activeMenu === $item['key'] ? ' is-active' : '' ?>"
-                            href="index.php?url=<?= e($item['route']) ?>">
+                            href="<?= url($item['route']) ?>">
                             <?= admin_icon($item['icon'], 'admin-nav__icon') ?>
                             <span><?= e($item['label']) ?></span>
                         </a>
@@ -53,12 +53,12 @@ $menuGroups = [
     </nav>
 
     <div class="admin-sidebar__footer">
-        <a class="admin-nav__link" href="index.php" target="_blank" rel="noopener">
+        <a class="admin-nav__link" href="<?= url() ?>" target="_blank" rel="noopener">
             <?= admin_icon('external', 'admin-nav__icon') ?>
             <span>Ver site</span>
         </a>
 
-        <a class="admin-nav__link" href="index.php?url=admin/logout">
+        <a class="admin-nav__link" href="<?= url('admin/logout') ?>">
             <?= admin_icon('logout', 'admin-nav__icon') ?>
             <span>Sair</span>
         </a>

@@ -44,7 +44,7 @@
     <section class="admin-card">
         <header class="admin-card__header">
             <h2>Estoque baixo</h2>
-            <a class="admin-card__link" href="index.php?url=admin/estoque">Gerenciar estoque →</a>
+            <a class="admin-card__link" href="<?= url('admin/estoque') ?>">Gerenciar estoque →</a>
         </header>
 
         <?php if (empty($lowStock)) : ?>
@@ -70,7 +70,7 @@
                                     <div class="admin-product-cell">
                                         <span class="admin-thumb">
                                             <?php if (!empty($item['cover_image'])) : ?>
-                                                <img src="<?= e($item['cover_image']) ?>" alt="">
+                                                <img src="<?= url($item['cover_image']) ?>" alt="">
                                             <?php else : ?>
                                                 <?= admin_icon('image') ?>
                                             <?php endif; ?>
@@ -101,7 +101,7 @@
         </header>
 
         <div class="admin-shortcuts">
-            <a class="admin-shortcut admin-shortcut--primary" href="index.php?url=admin/produtos&amp;novo=1">
+            <a class="admin-shortcut admin-shortcut--primary" href="<?= url('admin/produtos') ?>?novo=1">
                 <span class="admin-shortcut__icon"><?= admin_icon('plus') ?></span>
                 <span class="admin-shortcut__text">
                     <strong>Novo produto</strong>
@@ -110,7 +110,7 @@
                 <span class="admin-shortcut__arrow"><?= admin_icon('arrow') ?></span>
             </a>
 
-            <a class="admin-shortcut" href="index.php?url=admin/galeria">
+            <a class="admin-shortcut" href="<?= url('admin/galeria') ?>">
                 <span class="admin-shortcut__icon"><?= admin_icon('image') ?></span>
                 <span class="admin-shortcut__text">
                     <strong>Atualizar galeria</strong>
@@ -125,7 +125,7 @@
 <section class="admin-card">
     <header class="admin-card__header">
         <h2>Alterados recentemente</h2>
-        <a class="admin-card__link" href="index.php?url=admin/produtos">Ver produtos →</a>
+        <a class="admin-card__link" href="<?= url('admin/produtos') ?>">Ver produtos →</a>
     </header>
 
     <?php if (empty($recentActivity)) : ?>

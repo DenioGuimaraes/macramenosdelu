@@ -19,12 +19,12 @@ $welcome = SiteData::setting(
             <h1 class="hero__title"><?= htmlspecialchars($heroTitle, ENT_QUOTES, 'UTF-8') ?></h1>
             <?php require VIEW_PATH . '/partials/heart-divider.php'; ?>
             <p class="hero__subtitle"><?= htmlspecialchars($heroSubtitle, ENT_QUOTES, 'UTF-8') ?></p>
-            <a class="button-primary" href="index.php?url=catalogo">
+            <a class="button-primary" href="<?= url('catalogo') ?>">
                 <?= htmlspecialchars($heroCta, ENT_QUOTES, 'UTF-8') ?>
             </a>
         </div>
         <div class="hero__media">
-            <img src="images/nodelu_logo.png" alt="Logo Macramê Nós de Lu">
+            <img src="<?= url('images/nodelu_logo.png') ?>" alt="Logo Macramê Nós de Lu">
         </div>
     </div>
 </section>

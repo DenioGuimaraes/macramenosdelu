@@ -17,12 +17,12 @@ $whatsappUrl = $social['whatsapp']['url'] ?? '#';
         <nav class="chip-list" aria-label="Filtrar por categoria">
             <a
                 class="chip<?= $activeSlug === '' ? ' is-active' : '' ?>"
-                href="index.php?url=catalogo">Todas</a>
+                href="<?= url('catalogo') ?>">Todas</a>
 
             <?php foreach ($categories as $category) : ?>
                 <a
                     class="chip<?= $activeSlug === $category['slug'] ? ' is-active' : '' ?>"
-                    href="index.php?url=catalogo&amp;cat=<?= urlencode($category['slug']) ?>">
+                    href="<?= url('catalogo') ?>?cat=<?= urlencode($category['slug']) ?>">
                     <?= htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8') ?>
                 </a>
             <?php endforeach; ?>
@@ -38,11 +38,11 @@ $whatsappUrl = $social['whatsapp']['url'] ?? '#';
                     <article class="product-card">
                         <a
                             class="product-card__link"
-                            href="index.php?url=produto&amp;slug=<?= urlencode($product['slug']) ?>">
+                            href="<?= url('produto/' . urlencode($product['slug'])) ?>">
                             <div class="product-card__media">
                                 <?php if (!empty($product['cover_image'])) : ?>
                                     <img
-                                        src="<?= htmlspecialchars($product['cover_image'], ENT_QUOTES, 'UTF-8') ?>"
+                                        src="<?= url($product['cover_image']) ?>"
                                         alt="<?= htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8') ?>">
                                 <?php endif; ?>
                             </div>

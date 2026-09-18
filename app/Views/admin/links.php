@@ -6,7 +6,7 @@
 </header>
 
 <section class="admin-card admin-card--flush">
-    <form method="post" action="index.php?url=admin/linksSalvar">
+    <form method="post" action="<?= url('admin/linksSalvar') ?>">
         <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
         <div class="admin-table-wrap">

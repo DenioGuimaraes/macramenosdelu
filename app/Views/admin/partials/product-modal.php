@@ -17,7 +17,7 @@
             class="admin-modal__body"
             id="product-form"
             method="post"
-            action="index.php?url=admin/produtoSalvar"
+            action="<?= url('admin/produtoSalvar') ?>"
             enctype="multipart/form-data">
 
             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">

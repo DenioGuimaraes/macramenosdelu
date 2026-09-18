@@ -23,12 +23,12 @@ $whatsappMessage = $whatsappUrl . (str_contains($whatsappUrl, '?') ? '&' : '?')
     <div class="container">
 
         <nav class="breadcrumb" aria-label="Você está aqui">
-            <a href="index.php">Home</a>
+            <a href="<?= url() ?>">Home</a>
             <span>/</span>
-            <a href="index.php?url=catalogo">Loja</a>
+            <a href="<?= url('catalogo') ?>">Loja</a>
             <?php if (!empty($product['category_name'])) : ?>
                 <span>/</span>
-                <a href="index.php?url=catalogo&amp;cat=<?= urlencode($product['category_slug']) ?>">
+                <a href="<?= url('catalogo') ?>?cat=<?= urlencode($product['category_slug']) ?>">
                     <?= htmlspecialchars($product['category_name'], ENT_QUOTES, 'UTF-8') ?>
                 </a>
             <?php endif; ?>
@@ -41,7 +41,7 @@ $whatsappMessage = $whatsappUrl . (str_contains($whatsappUrl, '?') ? '&' : '?')
                     <div class="product-detail__main">
                         <img
                             id="product-main-image"
-                            src="<?= htmlspecialchars($images[0]['file_path'], ENT_QUOTES, 'UTF-8') ?>"
+                            src="<?= url($images[0]['file_path']) ?>"
                             alt="<?= htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8') ?>">
                     </div>
 
@@ -51,9 +51,9 @@ $whatsappMessage = $whatsappUrl . (str_contains($whatsappUrl, '?') ? '&' : '?')
                                 <button
                                     type="button"
                                     class="product-detail__thumb<?= $index === 0 ? ' is-active' : '' ?>"
-                                    data-image="<?= htmlspecialchars($image['file_path'], ENT_QUOTES, 'UTF-8') ?>">
+                                    data-image="<?= url($image['file_path']) ?>">
                                     <img
-                                        src="<?= htmlspecialchars($image['file_path'], ENT_QUOTES, 'UTF-8') ?>"
+                                        src="<?= url($image['file_path']) ?>"
                                         alt="">
                                 </button>
                             <?php endforeach; ?>
@@ -65,7 +65,7 @@ $whatsappMessage = $whatsappUrl . (str_contains($whatsappUrl, '?') ? '&' : '?')
 
                 <?php foreach ($videos as $video) : ?>
                     <video class="product-detail__video" controls preload="metadata">
-                        <source src="<?= htmlspecialchars($video['file_path'], ENT_QUOTES, 'UTF-8') ?>">
+                        <source src="<?= url($video['file_path']) ?>">
                     </video>
                 <?php endforeach; ?>
             </div>

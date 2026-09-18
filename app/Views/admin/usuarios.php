@@ -37,7 +37,7 @@
                 <h2>Alterar senha</h2>
             </header>
 
-            <form method="post" action="index.php?url=admin/senhaAlterar" class="admin-form">
+            <form method="post" action="<?= url('admin/senhaAlterar') ?>" class="admin-form">
                 <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
                 <div class="admin-field">
@@ -68,7 +68,7 @@
                 <h2>Nome de exibição</h2>
             </header>
 
-            <form method="post" action="index.php?url=admin/perfilSalvar" class="admin-form">
+            <form method="post" action="<?= url('admin/perfilSalvar') ?>" class="admin-form">
                 <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
                 <div class="admin-field">

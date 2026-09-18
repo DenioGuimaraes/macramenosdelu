@@ -9,7 +9,7 @@
 
     <section class="admin-card admin-card--flush">
         <?php foreach ($categories as $category) : ?>
-            <form method="post" action="index.php?url=admin/categoriaSalvar" id="cat-<?= (int) $category['id'] ?>" hidden>
+            <form method="post" action="<?= url('admin/categoriaSalvar') ?>" id="cat-<?= (int) $category['id'] ?>" hidden>
                 <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
                 <input type="hidden" name="id" value="<?= (int) $category['id'] ?>">
             </form>
@@ -77,7 +77,7 @@
 
                                         <form
                                             method="post"
-                                            action="index.php?url=admin/categoriaExcluir"
+                                            action="<?= url('admin/categoriaExcluir') ?>"
                                             data-confirm="Excluir a categoria &quot;<?= e($category['name']) ?>&quot;? Os produtos ficarão sem categoria.">
                                             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
                                             <input type="hidden" name="id" value="<?= (int) $category['id'] ?>">
@@ -100,7 +100,7 @@
             <h2>Nova categoria</h2>
         </header>
 
-        <form method="post" action="index.php?url=admin/categoriaSalvar" class="admin-form">
+        <form method="post" action="<?= url('admin/categoriaSalvar') ?>" class="admin-form">
             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
             <div class="admin-field">

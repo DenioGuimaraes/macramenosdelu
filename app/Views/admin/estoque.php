@@ -5,7 +5,7 @@
     </div>
 </header>
 
-<form method="post" action="index.php?url=admin/estoqueSalvar">
+<form method="post" action="<?= url('admin/estoqueSalvar') ?>">
     <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
     <section class="admin-card admin-card--flush">

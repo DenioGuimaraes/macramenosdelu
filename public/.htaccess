@@ -1,9 +1,13 @@
 RewriteEngine On
 
 # ------------------------------------------------------------
-# Front controller — usado quando o Document Root aponta
-# diretamente para /public (configuração comum em hospedagem)
+# Front controller
+# Converte o caminho da URL no parâmetro lido pelo roteador:
+#   /catalogo        -> index.php?url=catalogo
+#   /admin/produtos  -> index.php?url=admin/produtos
+# Arquivos existentes (CSS, JS, imagens, uploads) são servidos
+# diretamente, sem passar pelo PHP.
 # ------------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [L]
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

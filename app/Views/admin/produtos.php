@@ -55,8 +55,7 @@ foreach ($products as $product) {
     </article>
 </section>
 
-<form class="admin-toolbar" method="get" action="index.php">
-    <input type="hidden" name="url" value="admin/produtos">
+<form class="admin-toolbar" method="get" action="<?= url('admin/produtos') ?>">
 
     <label class="admin-search">
         <?= admin_icon('search', 'icon') ?>
@@ -113,7 +112,7 @@ foreach ($products as $product) {
                             <td>
                                 <span class="admin-thumb">
                                     <?php if (!empty($product['cover_image'])) : ?>
-                                        <img src="<?= e($product['cover_image']) ?>" alt="">
+                                        <img src="<?= url($product['cover_image']) ?>" alt="">
                                     <?php else : ?>
                                         <?= admin_icon('image') ?>
                                     <?php endif; ?>
@@ -139,7 +138,7 @@ foreach ($products as $product) {
                                         <?= admin_icon('pencil', 'icon') ?>
                                     </button>
 
-                                    <form method="post" action="index.php?url=admin/produtoStatus">
+                                    <form method="post" action="<?= url('admin/produtoStatus') ?>">
                                         <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
                                         <input type="hidden" name="id" value="<?= (int) $product['id'] ?>">
                                         <button
@@ -152,7 +151,7 @@ foreach ($products as $product) {
 
                                     <form
                                         method="post"
-                                        action="index.php?url=admin/produtoExcluir"
+                                        action="<?= url('admin/produtoExcluir') ?>"
                                         data-confirm="Excluir definitivamente o produto &quot;<?= e($product['name']) ?>&quot;?">
                                         <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
                                         <input type="hidden" name="id" value="<?= (int) $product['id'] ?>">
@@ -176,7 +175,7 @@ foreach ($products as $product) {
 
 <?php require VIEW_PATH . '/admin/partials/product-modal.php'; ?>
 
-<form id="media-delete-form" method="post" action="index.php?url=admin/midiaExcluir" hidden>
+<form id="media-delete-form" method="post" action="<?= url('admin/midiaExcluir') ?>" hidden>
     <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
     <input type="hidden" name="media_id" value="">
 </form>

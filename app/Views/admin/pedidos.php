@@ -58,7 +58,7 @@ $channelLabels = [
                                 <td><span class="admin-badge <?= e($status['class']) ?>"><?= e($status['label']) ?></span></td>
                                 <td class="is-right">
                                     <div class="admin-actions">
-                                        <form method="post" action="index.php?url=admin/pedidoStatus">
+                                        <form method="post" action="<?= url('admin/pedidoStatus') ?>">
                                             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
                                             <input type="hidden" name="id" value="<?= (int) $order['id'] ?>">
                                             <input type="hidden" name="status" value="<?= $order['status'] === 'pendente' ? 'concluido' : 'pendente' ?>">
@@ -69,7 +69,7 @@ $channelLabels = [
 
                                         <form
                                             method="post"
-                                            action="index.php?url=admin/pedidoExcluir"
+                                            action="<?= url('admin/pedidoExcluir') ?>"
                                             data-confirm="Excluir este pedido?">
                                             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
                                             <input type="hidden" name="id" value="<?= (int) $order['id'] ?>">
@@ -96,7 +96,7 @@ $channelLabels = [
             <h2>Registrar pedido</h2>
         </header>
 
-        <form method="post" action="index.php?url=admin/pedidoSalvar" class="admin-form">
+        <form method="post" action="<?= url('admin/pedidoSalvar') ?>" class="admin-form">
             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
             <div class="admin-field">

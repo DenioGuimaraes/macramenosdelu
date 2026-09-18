@@ -10,7 +10,7 @@
         <h2>Enviar imagens</h2>
     </header>
 
-    <form method="post" action="index.php?url=admin/galeriaUpload" enctype="multipart/form-data" class="admin-form admin-form--inline">
+    <form method="post" action="<?= url('admin/galeriaUpload') ?>" enctype="multipart/form-data" class="admin-form admin-form--inline">
         <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
         <div class="admin-field">
@@ -46,12 +46,12 @@
         <div class="admin-gallery">
             <?php foreach ($items as $item) : ?>
                 <figure class="admin-gallery__item">
-                    <img src="<?= e($item['file_path']) ?>" alt="<?= e($item['title'] ?? '') ?>">
+                    <img src="<?= url($item['file_path']) ?>" alt="<?= e($item['title'] ?? '') ?>">
                     <figcaption>
                         <span><?= e($item['title'] ?? 'Sem título') ?></span>
                         <form
                             method="post"
-                            action="index.php?url=admin/galeriaExcluir"
+                            action="<?= url('admin/galeriaExcluir') ?>"
                             data-confirm="Remover esta imagem da galeria?">
                             <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
                             <input type="hidden" name="id" value="<?= (int) $item['id'] ?>">

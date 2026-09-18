@@ -16,8 +16,8 @@ $csrfToken = Auth::csrfToken();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Leckerli+One&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" type="image/svg+xml" href="<?= url() ?>favicon/favicon.svg">
+    <link rel="stylesheet" href="<?= url() ?>css/admin.css">
 </head>
 
 <body class="admin admin-login-page">
@@ -35,7 +35,7 @@ $csrfToken = Auth::csrfToken();
                 <p class="admin-flash admin-flash--error" role="alert"><?= e($error) ?></p>
             <?php endif; ?>
 
-            <form method="post" action="index.php?url=admin/login" class="admin-login__form">
+            <form method="post" action="<?= url('admin/login') ?>" class="admin-login__form">
                 <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
                 <div class="admin-field">

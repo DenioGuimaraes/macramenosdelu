@@ -10,13 +10,13 @@ RewriteRule ^(bootstrap\.php|\.env|composer\.(json|lock))$ - [F,L]
 # ------------------------------------------------------------
 # Raiz do projeto
 # ------------------------------------------------------------
-RewriteRule ^$ public/index.php [L]
+RewriteRule ^$ public/index.php [L,QSA]
 
 # ------------------------------------------------------------
-# Demais requisições: procura o arquivo dentro de /public
-# (assets reais são servidos; o restante vai ao front controller)
+# Demais requisições são resolvidas dentro de /public
+# (os arquivos reais são servidos; o restante vai ao front
+#  controller pelas regras de public/.htaccess)
 # ------------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
-RewriteRule ^(?!public/)(.*)$ public/$1 [L]
+RewriteRule ^(?!public/)(.*)$ public/$1 [L,QSA]

@@ -66,6 +66,7 @@ function setupConfirmations() {
 function setupProductModal() {
     const modal = document.getElementById('product-modal');
     const form = document.getElementById('product-form');
+    const baseUrl = document.body.dataset.baseUrl || '/';
 
     if (!modal || !form) {
         return;
@@ -164,12 +165,12 @@ function setupProductModal() {
 
             if (media.media_type === 'video') {
                 const video = document.createElement('video');
-                video.src = media.file_path;
+                video.src = baseUrl + media.file_path;
                 video.muted = true;
                 item.appendChild(video);
             } else {
                 const image = document.createElement('img');
-                image.src = media.file_path;
+                image.src = baseUrl + media.file_path;
                 image.alt = '';
                 item.appendChild(image);
             }

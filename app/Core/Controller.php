@@ -77,7 +77,7 @@ class Controller
      */
     protected function redirect(string $route): void
     {
-        header('Location: index.php?url=' . $route);
+        header('Location: ' . url($route));
         exit;
     }
 

@@ -53,7 +53,11 @@ class App
                 unset($url[0]);
             } else {
 
-                die("Erro: Controller '{$controllerName}' não encontrado.");
+                // Endereço inexistente: página 404.
+                http_response_code(404);
+
+                $this->controller = 'ErroController';
+                $url = [];
             }
         }
 
@@ -72,17 +76,18 @@ class App
         // Método
         // ----------------------------------------------------
 
+        // Quando o segmento corresponde a um método público, ele define a
+        // ação. Caso contrário, segue como parâmetro de index()
+        // — é o que permite endereços como /produto/nome-da-peca.
+
         if (!empty($url[1])) {
 
             $methodName = $url[1];
 
-            if (is_callable([$controllerObject, $methodName])) {
+            if ($methodName !== 'index' && is_callable([$controllerObject, $methodName])) {
 
                 $this->method = $methodName;
                 unset($url[1]);
-            } else {
-
-                die("Erro: Método '{$methodName}' não encontrado em '{$this->controller}'.");
             }
         }
 

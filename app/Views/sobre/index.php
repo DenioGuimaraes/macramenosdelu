@@ -7,7 +7,7 @@
 
         <div class="about-split">
             <div class="about-split__media">
-                <img src="images/nodelu_logo.png" alt="Macramê Nós de Lu">
+                <img src="<?= url('images/nodelu_logo.png') ?>" alt="Macramê Nós de Lu">
             </div>
             <div class="about-split__text">
                 <p class="text-brand text-brand--in-column">
@@ -29,8 +29,8 @@
         </div>
 
         <div class="cta-row">
-            <a class="button-primary" href="index.php?url=catalogo">Ver loja</a>
-            <a class="button-secondary" href="index.php?url=contato">Falar conosco</a>
+            <a class="button-primary" href="<?= url('catalogo') ?>">Ver loja</a>
+            <a class="button-secondary" href="<?= url('contato') ?>">Falar conosco</a>
         </div>
     </div>
 </section>

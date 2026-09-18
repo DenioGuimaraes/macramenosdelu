@@ -6,7 +6,7 @@
 </header>
 
 <section class="admin-card">
-    <form method="post" action="index.php?url=admin/configuracoesSalvar" class="admin-form">
+    <form method="post" action="<?= url('admin/configuracoesSalvar') ?>" class="admin-form">
         <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
 
         <div class="admin-field-row">

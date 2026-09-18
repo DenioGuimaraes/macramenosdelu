@@ -57,6 +57,28 @@ if ($config['debug']) {
 }
 
 // ------------------------------------------------------------
+// Endereço base da aplicação
+// ------------------------------------------------------------
+// Funciona tanto em subpasta local (/macramenosdelu/) quanto com
+// o domínio apontando para a raiz do projeto ou para /public.
+
+$scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/'));
+
+if (substr($scriptDir, -7) === '/public') {
+    $scriptDir = substr($scriptDir, 0, -7);
+}
+
+define('BASE_URL', rtrim($scriptDir, '/') . '/');
+
+/**
+ * Monta um endereço interno a partir da raiz da aplicação.
+ */
+function url(string $path = ''): string
+{
+    return BASE_URL . ltrim($path, '/');
+}
+
+// ------------------------------------------------------------
 // Sessão (necessária para o painel administrativo)
 // ------------------------------------------------------------
 
