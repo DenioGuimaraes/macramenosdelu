@@ -5,7 +5,7 @@ class ContatoController extends Controller
     public function index(): void
     {
         $this->view('contato/index', [
-            'title' => 'Contato - Macramê Nós de Lu'
+            'title' => 'Fale com a gente — Macramê Nós de Lu',
         ]);
     }
 }

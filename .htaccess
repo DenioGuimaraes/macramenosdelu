@@ -1,20 +1,22 @@
 RewriteEngine On
 
-# Quando acessar a raiz do domínio
+# ------------------------------------------------------------
+# Bloqueia acesso direto às pastas internas da aplicação
+# (funciona tanto na raiz do domínio quanto em subpasta local)
+# ------------------------------------------------------------
+RewriteRule ^(app|database|docs|storage|tests|vendor)(/|$) - [F,L]
+RewriteRule ^(bootstrap\.php|\.env|composer\.(json|lock))$ - [F,L]
+
+# ------------------------------------------------------------
+# Raiz do projeto
+# ------------------------------------------------------------
 RewriteRule ^$ public/index.php [L]
 
-# Arquivos reais dentro de /public
-RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f [OR]
-RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -d
-RewriteRule ^(.+)$ public/$1 [L]
-
-# Todas as demais rotas vão para o front controller
+# ------------------------------------------------------------
+# Demais requisições: procura o arquivo dentro de /public
+# (assets reais são servidos; o restante vai ao front controller)
+# ------------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ public/index.php [L]
-
-# Bloqueia acesso direto a pastas internas
-RedirectMatch 403 ^/(app|vendor|database|storage|tests)(/|$)
-
-# Bloqueia arquivos sensíveis
-RedirectMatch 403 ^/(bootstrap\.php|\.env)$
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+RewriteRule ^(?!public/)(.*)$ public/$1 [L]

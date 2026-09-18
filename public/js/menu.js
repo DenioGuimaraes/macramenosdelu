@@ -70,3 +70,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+/* Galeria da página de produto */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const mainImage = document.getElementById('product-main-image');
+    const thumbs = document.querySelectorAll('.product-detail__thumb');
+
+    if (!mainImage || thumbs.length === 0) {
+        return;
+    }
+
+    thumbs.forEach(function (thumb) {
+        thumb.addEventListener('click', function () {
+            mainImage.src = thumb.dataset.image;
+
+            thumbs.forEach(function (item) {
+                item.classList.toggle('is-active', item === thumb);
+            });
+        });
+    });
+});
