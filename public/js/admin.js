@@ -8,7 +8,36 @@ document.addEventListener('DOMContentLoaded', function () {
     setupSidebar();
     setupConfirmations();
     setupProductModal();
+    setupHeroUploadTriggers();
 });
+
+function setupHeroUploadTriggers() {
+    document.querySelectorAll('[data-trigger-file]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const input = document.getElementById(button.dataset.triggerFile);
+
+            if (!input) {
+                return;
+            }
+
+            input.click();
+        });
+    });
+
+    document.querySelectorAll('[data-trigger-file]').forEach(function (button) {
+        const input = document.getElementById(button.dataset.triggerFile);
+
+        if (!input) {
+            return;
+        }
+
+        input.addEventListener('change', function () {
+            if (input.files && input.files.length > 0) {
+                input.form.submit();
+            }
+        });
+    });
+}
 
 /* ------------------------------------------------------------
    Sidebar (mobile)

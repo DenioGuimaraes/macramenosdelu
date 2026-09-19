@@ -110,11 +110,11 @@
                 <span class="admin-shortcut__arrow"><?= admin_icon('arrow') ?></span>
             </a>
 
-            <a class="admin-shortcut" href="<?= url('admin/galeria') ?>">
+            <a class="admin-shortcut" href="<?= url('admin/sobre') ?>">
                 <span class="admin-shortcut__icon"><?= admin_icon('image') ?></span>
                 <span class="admin-shortcut__text">
-                    <strong>Atualizar galeria</strong>
-                    <small>Gerenciar fotos</small>
+                    <strong>Editar página Sobre</strong>
+                    <small>Imagem e textos institucionais</small>
                 </span>
                 <span class="admin-shortcut__arrow"><?= admin_icon('arrow') ?></span>
             </a>

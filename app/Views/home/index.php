@@ -1,5 +1,7 @@
 <?php
 
+$heroCarousel = $heroCarousel ?? [];
+
 $heroTitle = SiteData::setting('home_hero_title', 'Macramê Nós de Lu');
 $heroSubtitle = SiteData::setting(
     'home_hero_subtitle',
@@ -23,8 +25,30 @@ $welcome = SiteData::setting(
                 <?= htmlspecialchars($heroCta, ENT_QUOTES, 'UTF-8') ?>
             </a>
         </div>
-        <div class="hero__media">
-            <img src="<?= url('images/nodelu_logo.png') ?>" alt="Logo Macramê Nós de Lu">
+        <div class="hero__media hero-carousel" data-hero-carousel>
+            <?php if (empty($heroCarousel)) : ?>
+                <div class="hero-carousel__slide is-active" data-media-type="image">
+                    <img src="<?= url('images/nodelu_logo.png') ?>" alt="Logo Macramê Nós de Lu">
+                </div>
+            <?php else : ?>
+                <?php foreach ($heroCarousel as $index => $item) : ?>
+                    <div
+                        class="hero-carousel__slide<?= $index === 0 ? ' is-active' : '' ?>"
+                        data-media-type="<?= htmlspecialchars($item['media_type'], ENT_QUOTES, 'UTF-8') ?>">
+                        <?php if ($item['media_type'] === 'video') : ?>
+                            <video
+                                src="<?= url($item['file_path']) ?>"
+                                muted
+                                playsinline
+                                preload="metadata"></video>
+                        <?php else : ?>
+                            <img
+                                src="<?= url($item['file_path']) ?>"
+                                alt="Macramê Nós de Lu">
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>

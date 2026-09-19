@@ -13,7 +13,7 @@ $menuGroups = [
         ['key' => 'pedidos', 'label' => 'Pedidos', 'icon' => 'clipboard', 'route' => 'admin/pedidos'],
     ],
     'Conteúdo' => [
-        ['key' => 'galeria', 'label' => 'Galeria', 'icon' => 'image', 'route' => 'admin/galeria'],
+        ['key' => 'sobre', 'label' => 'Sobre', 'icon' => 'image', 'route' => 'admin/sobre'],
         ['key' => 'home', 'label' => 'Home', 'icon' => 'home', 'route' => 'admin/home'],
         ['key' => 'links', 'label' => 'Links', 'icon' => 'link', 'route' => 'admin/links'],
     ],

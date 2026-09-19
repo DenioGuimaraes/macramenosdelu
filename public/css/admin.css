@@ -1327,6 +1327,196 @@ body.admin {
     gap: var(--space-3);
 }
 
+/* Letreiro — pré-visualização (Home) */
+
+.admin-ticker-preview {
+    margin-top: var(--space-4);
+    height: 2.25rem;
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    background: var(--color-primary);
+    color: var(--color-text-on-primary);
+    display: flex;
+    align-items: center;
+}
+
+.admin-ticker-preview__track {
+    display: flex;
+    gap: var(--space-8);
+    padding-inline: var(--space-4);
+    white-space: nowrap;
+    animation: admin-ticker-scroll 18s linear infinite;
+    font-size: 0.875rem;
+}
+
+@keyframes admin-ticker-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.admin-card__header--inset {
+    margin-bottom: var(--space-5);
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.admin-card__lead {
+    margin: var(--space-2) 0 0;
+    max-width: 36rem;
+}
+
+.admin-empty--compact {
+    padding-block: var(--space-6);
+}
+
+/* Carrossel do hero — lista ordenável */
+
+.admin-sequence {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.admin-sequence__item {
+    display: grid;
+    grid-template-columns: auto 5.5rem 1fr auto;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-4);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-md);
+    background: var(--admin-surface);
+}
+
+@media (max-width: 640px) {
+    .admin-sequence__item {
+        grid-template-columns: auto 4.5rem 1fr;
+    }
+
+    .admin-sequence__actions {
+        grid-column: 1 / -1;
+        justify-content: flex-end;
+    }
+}
+
+.admin-sequence__order {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--radius-sm);
+    background: var(--admin-accent-soft);
+    color: var(--admin-accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.admin-sequence__thumb {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--admin-bg);
+}
+
+.admin-sequence__thumb img,
+.admin-sequence__thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.admin-sequence__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.admin-sequence__info strong {
+    font-size: 0.9375rem;
+    color: var(--admin-text);
+}
+
+.admin-sequence__path {
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-sequence__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.admin-sequence__actions form {
+    margin: 0;
+}
+
+.admin-sequence__add {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--admin-border);
+}
+
+.admin-form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.admin-about-preview {
+    margin: 0 0 var(--space-5);
+    max-width: 16rem;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--admin-border);
+    background: var(--admin-bg);
+}
+
+.admin-about-preview img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: contain;
+    background: var(--color-bg-decorative, #f6ead9);
+}
+
+.admin-about-preview figcaption {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.admin-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    font-size: 0.875rem;
+    color: var(--admin-text);
+    cursor: pointer;
+}
+
+.admin-checkbox input {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
 /* ============================================================
    Login
    ============================================================ */

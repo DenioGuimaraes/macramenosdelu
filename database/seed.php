@@ -34,7 +34,7 @@ if ($statement->fetchColumn() === false) {
         'INSERT INTO admin_users (name, email, password_hash) VALUES (?, ?, ?)'
     );
     $insert->execute([
-        'Luzia',
+        'Lucilia',
         $adminEmail,
         password_hash($adminPassword, PASSWORD_DEFAULT),
     ]);
@@ -111,6 +111,10 @@ $settings = [
     'home_hero_cta'       => 'Conhecer a loja',
     'home_brand_bar'      => 'Inspiração em cada fio',
     'home_welcome'        => 'Bem-vindo ao nosso espaço dedicado à arte do macramê. Aqui você encontra peças pensadas para decorar, presentear e emocionar — sempre com o toque humano do trabalho manual.',
+    'about_text_1'        => 'O projeto Macramê Nós de Lu nasceu do amor pelo artesanato e pela criação de peças feitas à mão.',
+    'about_text_2'        => 'Nosso objetivo é transformar fios, nós e ideias em objetos que carregam afeto, beleza e personalidade — para decorar ambientes, presentear pessoas queridas ou marcar momentos especiais.',
+    'about_sustainability_title' => 'Cuidado e sustentabilidade',
+    'about_sustainability_text'  => 'Valorizamos a produção consciente, o reaproveitamento quando possível e materiais selecionados com responsabilidade — sempre mantendo a delicadeza visual que define a marca.',
 ];
 
 $insertSetting = $pdo->prepare(

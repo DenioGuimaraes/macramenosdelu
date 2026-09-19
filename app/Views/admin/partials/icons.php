@@ -34,6 +34,8 @@ if (!function_exists('admin_icon')) {
             'refresh'   => '<path d="M3 12a9 9 0 0 1 15.3-6.4L21 8"/><path d="M21 4v4h-4"/><path d="M21 12a9 9 0 0 1-15.3 6.4L3 16"/><path d="M3 20v-4h4"/>',
             'video'     => '<rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10 6-3v10l-6-3z"/>',
             'arrow'     => '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
+            'arrow-up'  => '<path d="M12 19V5"/><path d="m5 12 7-7 7 7"/>',
+            'arrow-down'=> '<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>',
             'close'     => '<path d="m6 6 12 12"/><path d="m18 6-12 12"/>',
             'lock'      => '<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
             'mail'      => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',

@@ -410,71 +410,72 @@ class AdminController extends Controller
     }
 
     // ========================================================
-    // Galeria
+    // Página Sobre
     // ========================================================
 
-    public function galeria(): void
+    public function sobre(): void
     {
         $this->guard();
 
-        $galleryModel = $this->model('GalleryItem');
-
-        $this->adminView('admin/galeria', [
-            'title'        => 'Galeria — Painel',
-            'pageTitle'    => 'Galeria',
-            'pageSubtitle' => 'Fotos exibidas nas seções do site',
-            'activeMenu'   => 'galeria',
-            'items'        => $galleryModel->all(),
+        $this->adminView('admin/sobre', [
+            'title'        => 'Sobre — Painel',
+            'pageTitle'    => 'Sobre',
+            'pageSubtitle' => 'Imagem e textos da página institucional',
+            'activeMenu'   => 'sobre',
+            'settings'     => $this->model('Setting')->map(),
         ]);
     }
 
-    public function galeriaUpload(): void
+    public function sobreSalvar(): void
     {
         $this->guard();
         $this->requirePost();
 
-        $galleryModel = $this->model('GalleryItem');
-        $title = trim((string) ($_POST['title'] ?? ''));
-        $saved = 0;
+        $settingModel = $this->model('Setting');
 
-        foreach ($this->normalizeFiles($_FILES['images'] ?? null) as $file) {
-            $path = $this->storeUpload($file, 'galeria', self::IMAGE_TYPES);
+        $textKeys = [
+            'about_text_1',
+            'about_text_2',
+            'about_sustainability_title',
+            'about_sustainability_text',
+        ];
 
-            if ($path !== null) {
-                $galleryModel->create($title, $path, $galleryModel->nextOrder());
-                $saved++;
+        foreach ($textKeys as $key) {
+            if (array_key_exists($key, $_POST)) {
+                $settingModel->set($key, trim((string) $_POST[$key]));
             }
         }
 
-        if ($saved > 0) {
-            $this->log('galeria', null, 'upload', $saved . ' imagem(ns) adicionada(s) à galeria');
-            Auth::flash($saved . ' imagem(ns) adicionada(s).');
+        $currentImage = trim((string) ($settingModel->get('about_image') ?? ''));
+
+        if (!empty($_POST['remove_about_image'])) {
+            if ($currentImage !== '') {
+                $this->removeUploadedFile($currentImage);
+            }
+
+            $settingModel->set('about_image', '');
         } else {
-            Auth::flash('Nenhuma imagem válida enviada.', 'error');
-        }
+            $file = $_FILES['about_image'] ?? null;
 
-        $this->redirect('admin/galeria');
-    }
+            if (is_array($file) && ($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
+                $path = $this->storeUpload($file, 'sobre', self::IMAGE_TYPES);
 
-    public function galeriaExcluir(): void
-    {
-        $this->guard();
-        $this->requirePost();
+                if ($path !== null) {
+                    if ($currentImage !== '') {
+                        $this->removeUploadedFile($currentImage);
+                    }
 
-        $id = (int) ($_POST['id'] ?? 0);
-
-        if ($id > 0) {
-            $galleryModel = $this->model('GalleryItem');
-            $item = $galleryModel->find($id);
-
-            if ($item !== null) {
-                $this->removeUploadedFile($item['file_path']);
-                $galleryModel->delete($id);
-                Auth::flash('Imagem removida.');
+                    $settingModel->set('about_image', $path);
+                } else {
+                    Auth::flash('A imagem enviada não é válida ou excede o tamanho permitido.', 'error');
+                    $this->redirect('admin/sobre');
+                }
             }
         }
 
-        $this->redirect('admin/galeria');
+        $this->log('sobre', null, 'atualizada', 'Conteúdo da página Sobre atualizado');
+        Auth::flash('Conteúdo da página Sobre atualizado.');
+        $this->redirect('admin/sobre');
     }
 
     // ========================================================
@@ -491,6 +492,7 @@ class AdminController extends Controller
             'pageSubtitle' => 'Textos exibidos na página inicial',
             'activeMenu'   => 'home',
             'settings'     => $this->model('Setting')->map(),
+            'heroCarousel' => $this->model('HeroCarouselItem')->all(),
         ]);
     }
 
@@ -502,6 +504,7 @@ class AdminController extends Controller
         $settingModel = $this->model('Setting');
 
         $keys = [
+            'header_ticker_message',
             'home_hero_title',
             'home_hero_subtitle',
             'home_hero_cta',
@@ -510,11 +513,82 @@ class AdminController extends Controller
         ];
 
         foreach ($keys as $key) {
-            $settingModel->set($key, trim((string) ($_POST[$key] ?? '')));
+            if (!array_key_exists($key, $_POST)) {
+                continue;
+            }
+
+            $settingModel->set($key, trim((string) $_POST[$key]));
         }
 
         $this->log('home', null, 'atualizada', 'Conteúdo da home atualizado');
         Auth::flash('Conteúdo da home atualizado.');
+        $this->redirect('admin/home');
+    }
+
+    public function homeHeroUpload(): void
+    {
+        $this->guard();
+        $this->requirePost();
+
+        $mediaType = ($_POST['media_type'] ?? '') === 'video' ? 'video' : 'image';
+        $field = $mediaType === 'video' ? 'video' : 'image';
+        $allowed = $mediaType === 'video' ? self::VIDEO_TYPES : self::IMAGE_TYPES;
+
+        $carouselModel = $this->model('HeroCarouselItem');
+        $uploaded = 0;
+
+        foreach ($this->normalizeFiles($_FILES[$field] ?? null) as $file) {
+            $path = $this->storeUpload($file, 'hero', $allowed);
+
+            if ($path !== null) {
+                $carouselModel->create($mediaType, $path, $carouselModel->nextOrder());
+                $uploaded++;
+            }
+        }
+
+        if ($uploaded === 0) {
+            Auth::flash('Nenhum arquivo válido foi enviado.', 'error');
+        } else {
+            $this->log('hero_carousel', null, 'upload', "{$uploaded} mídia(s) adicionada(s) ao carrossel");
+            Auth::flash($uploaded === 1 ? 'Mídia adicionada ao carrossel.' : "{$uploaded} mídias adicionadas ao carrossel.");
+        }
+
+        $this->redirect('admin/home');
+    }
+
+    public function homeHeroMover(): void
+    {
+        $this->guard();
+        $this->requirePost();
+
+        $id = (int) ($_POST['id'] ?? 0);
+        $direction = ($_POST['direction'] ?? '') === 'up' ? 'up' : 'down';
+
+        $moved = $this->model('HeroCarouselItem')->move($id, $direction);
+
+        Auth::flash(
+            $moved ? 'Ordem atualizada.' : 'Não foi possível mover este item.',
+            $moved ? 'success' : 'error'
+        );
+
+        $this->redirect('admin/home');
+    }
+
+    public function homeHeroExcluir(): void
+    {
+        $this->guard();
+        $this->requirePost();
+
+        $id = (int) ($_POST['id'] ?? 0);
+        $carouselModel = $this->model('HeroCarouselItem');
+        $item = $carouselModel->find($id);
+
+        if ($item !== null) {
+            $this->removeUploadedFile($item['file_path']);
+            $carouselModel->delete($id);
+            Auth::flash('Item removido do carrossel.');
+        }
+
         $this->redirect('admin/home');
     }
 

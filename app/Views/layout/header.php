@@ -6,6 +6,7 @@ $rawUrl = isset($_GET['url']) ? trim((string) $_GET['url'], '/') : '';
 $currentSlug = $rawUrl === '' ? 'home' : explode('/', $rawUrl)[0];
 
 $pageTitle = $title ?? 'Macramê Nós de Lu';
+$tickerMessage = trim(SiteData::setting('header_ticker_message', ''));
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -28,22 +29,31 @@ $pageTitle = $title ?? 'Macramê Nós de Lu';
 
 <body>
     <header class="site-header">
-        <div class="header-ticker" aria-hidden="true">
-            <div class="header-ticker__track">
-                <span class="header-ticker__item">Artesanato feito à mão com carinho</span>
-                <span class="header-ticker__item">Peças únicas em macramê</span>
-                <span class="header-ticker__item">Produção autoral — Macramê Nós de Lu</span>
-                <span class="header-ticker__item">Artesanato feito à mão com carinho</span>
-                <span class="header-ticker__item">Peças únicas em macramê</span>
-                <span class="header-ticker__item">Produção autoral — Macramê Nós de Lu</span>
-            </div>
+        <div class="header-ticker<?= $tickerMessage === '' ? ' header-ticker--empty' : '' ?>" aria-hidden="true">
+            <?php if ($tickerMessage !== '') : ?>
+                <div class="header-ticker__track">
+                    <?php for ($i = 0; $i < 4; $i++) : ?>
+                        <span class="header-ticker__item"><?= htmlspecialchars($tickerMessage, ENT_QUOTES, 'UTF-8') ?></span>
+                    <?php endfor; ?>
+                </div>
+            <?php endif; ?>
         </div>
 
         <div class="header-bar">
             <div class="container header-bar__inner">
-                <div class="site-logo">
-                    <a href="<?= url() ?>" aria-label="Ir para a página inicial">
-                        <img src="<?= url('images/nodelu_logo.png') ?>" alt="Macramê Nós de Lu">
+                <div class="site-brand">
+                    <a class="site-brand__link" href="<?= url() ?>" aria-label="Nós de Lu — Arte em Macramê, ir para a página inicial">
+                        <img
+                            class="site-brand__logo"
+                            src="<?= url('images/nodelu_logo.png') ?>"
+                            alt=""
+                            width="100"
+                            height="100"
+                            decoding="async">
+                        <span class="site-brand__text">
+                            <span class="site-brand__title">Nós de Lu</span>
+                            <span class="site-brand__tagline">Arte em Macramê</span>
+                        </span>
                     </a>
                 </div>
 
